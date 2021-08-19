@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { message } from 'antd';
 
+import zuri from "../assets/zuri.png"
+import i4g from "../assets/i4g.png"
+import hng from "../assets/hng.png"
 class Contact extends Component {
 
    constructor(props) {
@@ -47,10 +50,7 @@ class Contact extends Component {
 
     if(this.props.data){
       var name = this.props.data.name;
-      var street = this.props.data.address.street;
       var city = this.props.data.address.city;
-      var state = this.props.data.address.state;
-      var zip = this.props.data.address.zip;
       var phone= this.props.data.phone;
       var email = this.props.data.email;
       var message = this.props.data.contactmessage;
@@ -126,12 +126,21 @@ class Contact extends Component {
 				   </div>
 
                <div className="widget widget_tweets">
-                  <h4 className="widget-title">Latest Tweets</h4>
+                  <h4 className="widget-title">Zuri/HNG/i4g Contacts</h4>
                         <span>
-                           <img src="../../public/images/zuri.png" />
+                           <a href="https://training.zuri.team/" target = "_blank">
+                           <img src={zuri} />
+                           </a>
                         </span>
                         <span>
-                        <img src="../../public/images/hng.png" />
+                           <a href="https://ingressive.org/" target = "_blank">
+                        <img src={i4g} />
+                        </a>
+                        </span>
+                        <span>
+                           <a href="https://hng.tech/" target = "_blank">
+                        <img src={hng} />
+                        </a>
                         </span>
 		         </div>
             </aside>
