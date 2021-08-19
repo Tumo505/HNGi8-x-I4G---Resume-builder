@@ -1,6 +1,48 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { message } from 'antd';
 
 class Contact extends Component {
+
+   constructor(props) {
+      super(props);
+
+      this.state = {
+         name: '',
+         email: '',
+         subject: '',
+         message: '',
+         errors: [],
+         loading: false
+      }
+     
+   }
+
+   handleChange = (event) => {
+      this.setState({
+         [event.target.name]: event.target.value,
+      })
+   }
+
+   handleSubmit = (event) => {
+      event.preventDefault();
+      this.setState({ loading: true });
+      const Mail = {
+         name: this.state.name,
+         email: this.state.email,
+         subject: this.state.subject,
+         message: this.state.message
+      };
+      axios.post('http://localhost:5000/contact', Mail)
+      .then((res) => {
+         console.log(res);
+         message.success("message sent to Tumo Kgosiyame")
+         window.location.reload()
+      }).catch((err) => {
+         console.log(err)
+      })
+   }
+
   render() {
 
     if(this.props.data){
@@ -36,7 +78,7 @@ class Contact extends Component {
          <div className="row">
             <div className="eight columns">
 
-               <form action="" method="post" id="contactForm" name="contactForm">
+               <form action="submit" method="post" id="contactForm" name="contactForm">
 					<fieldset>
 
                   <div>
@@ -56,14 +98,11 @@ class Contact extends Component {
 
                   <div>
                      <label htmlFor="contactMessage">Message <span className="required">*</span></label>
-                     <textarea cols="50" rows="15" id="message" name="message"></textarea>
+                     <textarea cols="50" rows="15" id="message" name="message" onChange={this.handleChange}></textarea>
                   </div>
 
                   <div>
-                     <button className="submit">Submit</button>
-                     <span id="image-loader">
-                        <img alt="" src="images/loader.gif" />
-                     </span>
+                     <button onClick={this.handleSubmit} >Submit</button>
                   </div>
 					</fieldset>
 				   </form>
