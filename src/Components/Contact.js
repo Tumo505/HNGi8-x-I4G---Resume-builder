@@ -46,7 +46,7 @@ class Contact extends Component {
                });
              });
          }
-         window.location.reload()
+         // window.location.reload()
       }).catch((err) => {
          console.log(err)
          if (err) {
