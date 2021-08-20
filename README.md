@@ -6,3 +6,4 @@
 
 #  [DEMO](https://zuri-stage2.herokuapp.com/)
 
+![Demo](public/images/zuriTesting(phone).mp4)
