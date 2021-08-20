@@ -36,7 +36,7 @@ class Contact extends Component {
          subject: this.state.subject,
          message: this.state.message
       };
-      axios.post('http://localhost:5000/contact', Mail)
+      axios.post('/contact', Mail)
       .then((res) => {
          console.log(res);
          message.success("message sent to Tumo Kgosiyame")
