@@ -39,10 +39,27 @@ class Contact extends Component {
       axios.post('/contact', Mail)
       .then((res) => {
          console.log(res);
-         message.success("message sent to Tumo Kgosiyame")
+         if (res.status == 200) {
+            message.success("Your message was sent, thank you").then((res) => {
+               this.setState({
+                 loading: false,
+               });
+             });
+         }
          window.location.reload()
       }).catch((err) => {
          console.log(err)
+         if (err) {
+            message
+              .error(
+                "error sending message"
+              )
+              .then((res) => {
+                this.setState({
+                  loading: false,
+                });
+              });
+          }
       })
    }
 
@@ -77,8 +94,12 @@ class Contact extends Component {
 
          <div className="row">
             <div className="eight columns">
-
-               <form action="submit" method="post" id="contactForm" name="contactForm">
+               {this.state.loading ? (
+                  <div>
+                  Sending mail...
+                </div>
+               ) : (
+                  <form action="submit" method="post" id="contactForm" name="contactForm">
 					<fieldset>
 
                   <div>
@@ -106,6 +127,8 @@ class Contact extends Component {
                   </div>
 					</fieldset>
 				   </form>
+               )}
+               
 
            <div id="message-warning"> Error boy</div>
 				   <div id="message-success">
