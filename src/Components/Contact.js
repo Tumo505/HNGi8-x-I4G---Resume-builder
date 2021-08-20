@@ -36,7 +36,7 @@ class Contact extends Component {
          subject: this.state.subject,
          message: this.state.message
       };
-      axios.post('/contact', Mail)
+      axios.post('https://secure-lowlands-03035.herokuapp.com/contact', Mail)
       .then((res) => {
          console.log(res);
          if (res.status == 200) {
